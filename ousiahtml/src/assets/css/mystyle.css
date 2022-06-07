@@ -1,0 +1,128 @@
+body,html{
+    /* body自带8px的外边距 */
+    margin: 0;
+    background: url('../img/backgroud3.jpg');
+    /* 解决背景图片适配问题 */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+/* 经常被复用的样式方案 */
+.dweb{
+    background: #00000060;
+    /* 阴影样式 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    /* 考虑到适配问题的边角样式 */
+    border-radius: .25rem;
+}
+/* 头部导航 */
+#top-menu{
+    width: 100vw;
+    height: 60px;
+    /* 让“top”和“left”可以叠加在一起 */
+    /* positon设置后可以使用top设置 */
+    position: fixed;
+    /* 固定住“top”不要让他被“content”盖住 */
+    top: 0;
+    z-index: 1001;
+}
+
+/* 侧边栏 左-导航 */
+#left-menu{
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    /* 固定住“top”不要让他被“content”盖住 */
+    z-index: 1001;
+    /* 动画过渡 */
+    transition: all 0.3s ease;
+}
+
+/* icon */
+#left-menu #left-btn{
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    left: 220px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+/*left-menu带上了xs的样式 */
+#left-menu.xs{
+    /* 动画过渡 */
+    /* 使用动画过渡就不能改变left本身，从本身出发执行一次外边距或内边距的修改则可以 */
+    margin-left: -200px;
+    transition: all 0.3s ease;
+}
+
+/* 页面内容 */
+#content{
+    position: relative;
+    top: 60px;
+    margin-left: 220px;
+    margin-right: 20px;
+    padding: 10px 0;
+}
+/*content带上了xs的样式 */
+#content.xs{
+    margin-left: 20px;
+}
+/* 页面底部 */
+#footer{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px 0;
+}
+/* 其他 */
+/* hover(CSS3鼠标悬放监听事件) */
+.el-submenu__title:hover{
+    background-color: #3c89d6!important;
+}
+.el-menu-item:hover{
+    background-color: #3c89d6!important;
+}
+.el-menu{
+    border: none;
+}
+.el-menu i{
+    color: #ffffff;
+}
+/* 在页面内部不能修改框架的样式只能在mystyle里修改 */
+.el-form-item__label{
+    color: #ffffff!important;
+}
+.el-input input{
+    color: #000;
+    border: none;
+}
+/* summernote */
+.note-btn {
+    color: rgb(144, 0, 33)!important;
+}
+.note-btn:hover{
+    color: #000!important;
+}
+.dropdown-menu{
+    background: #fff!important;
+    color: #3c89d6!important;
+}
+
+.dropdown-menu a{
+    color: rgb(144, 0, 33);
+}
+.popover{
+    background: #00000060!important;
+}
+.note-editable{
+    background: #fff;
+    color: #000;
+}
+/* 描述输入框的样式 */
+.el-textarea__inner {
+    border: none;
+  }
