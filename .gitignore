@@ -2,3 +2,4 @@ node_modules
 /ousiasite/blog/__pycache__
 /ousiasite/blog/migrations
 /ousiasite/db.sqlite3
+/ousiasite/ousiasite/settings.py
