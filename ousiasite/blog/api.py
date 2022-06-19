@@ -1,7 +1,11 @@
 import imp
+from lib2to3.pgen2 import token
 from rest_framework.decorators import api_view
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.hashers import check_password, make_password
 from rest_framework.response import Response
-from blog.models import Article
+from blog.models import Article, Userinfo
+from django.contrib.auth.models import User
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
@@ -11,6 +15,56 @@ import datetime
 import requests
 
 hostUrl = 'http://127.0.0.1:9000/'
+
+
+@api_view(['POST'])
+def ousia_login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    # 登录逻辑
+    user = User.objects.filter(username=username)
+    if user:
+        checkPwd = check_password(password, user[0].password)
+        if checkPwd:
+            userinfo = Userinfo.objects.get(belong=user[0])
+            token = Token.objects.get_or_create(user=user[0])
+            token = Token.objects.get(user=user[0])
+        else:
+            return Response('pwderr')
+    else:
+        return Response('none')
+    userinfo_data = {
+        'token': token.key,
+        'nickname': userinfo.nickName,
+        'headImg': userinfo.headImg
+    }
+    return Response(userinfo_data)
+
+
+@api_view(['POST'])
+def ousia_register(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    # 注册逻辑
+    user = User.objects.filter(username=username)
+    if user:
+        return Response('repeat')
+    else:
+        new_password = make_password(password, username)
+        newUser = User(username=username, password=new_password)
+        newUser.save()
+
+    token = Token.objects.get_or_create(user=newUser)
+    token = Token.objects.get(user=newUser)
+    userinfo = Userinfo.objects.get_or_create(belong=newUser)
+    userinfo = Userinfo.objects.get(belong=newUser)
+
+    userinfo_data = {
+        'token': token.key,
+        'nickname': userinfo.nickName,
+        'headImg': userinfo.headImg
+    }
+    return Response(userinfo_data)
 
 
 @api_view(['POST'])
