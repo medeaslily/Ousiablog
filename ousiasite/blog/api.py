@@ -19,6 +19,7 @@ hostUrl = 'http://127.0.0.1:9000/'
 
 @api_view(['POST'])
 def ousia_login(request):
+    # 1.验证账号
     username = request.POST['username']
     password = request.POST['password']
     # 登录逻辑
@@ -26,13 +27,18 @@ def ousia_login(request):
     if user:
         checkPwd = check_password(password, user[0].password)
         if checkPwd:
+            # 为了应对Userinfo matching query does not exist专门为admin创建用户
+            userinfo = Userinfo.objects.get_or_create(belong=user[0])
+            # 2.获取userinfo
             userinfo = Userinfo.objects.get(belong=user[0])
+            # 3.生成token
             token = Token.objects.get_or_create(user=user[0])
             token = Token.objects.get(user=user[0])
         else:
             return Response('pwderr')
     else:
         return Response('none')
+    # 4.生成userinfo_data
     userinfo_data = {
         'token': token.key,
         'nickname': userinfo.nickName,
@@ -43,6 +49,7 @@ def ousia_login(request):
 
 @api_view(['POST'])
 def ousia_register(request):
+    # 1.验证账号
     username = request.POST['username']
     password = request.POST['password']
     # 注册逻辑
@@ -50,15 +57,17 @@ def ousia_register(request):
     if user:
         return Response('repeat')
     else:
+        # 生成user
         new_password = make_password(password, username)
         newUser = User(username=username, password=new_password)
         newUser.save()
-
+    # 生成token
     token = Token.objects.get_or_create(user=newUser)
     token = Token.objects.get(user=newUser)
+    # 生成userinfo
     userinfo = Userinfo.objects.get_or_create(belong=newUser)
     userinfo = Userinfo.objects.get(belong=newUser)
-
+    # 生成userinfo_data
     userinfo_data = {
         'token': token.key,
         'nickname': userinfo.nickName,

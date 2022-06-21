@@ -16,6 +16,14 @@ body,html{
     /* 考虑到适配问题的边角样式 */
     border-radius: .25rem;
 }
+/* 涉及公共样式在css定义 */
+/* font-weight指定了字体的粗细程度 */
+.dweb .header{
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+}
 /* 头部导航 */
 #top-menu{
     width: 100vw;
