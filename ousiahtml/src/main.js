@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "popper.js";
 
 Vue.use(ElementUI);
-
+Vue.config.devtools = true;
 new Vue({
   router,
   store,

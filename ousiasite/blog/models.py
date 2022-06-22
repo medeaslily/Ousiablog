@@ -17,7 +17,7 @@ class Userinfo(models.Model):
     belong = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __init__(self):
+    def __int__(self):
         return self.id
 
 # 文章
@@ -42,7 +42,7 @@ class Article(models.Model):
 #     name = models.CharField()
 #     belong = models.ForeignKey(self)
 
-#     def __init__(self):
+#     def __int__(self):
 #         return self.id
 # # 收藏
 
@@ -51,7 +51,7 @@ class Article(models.Model):
 #     belong_user = models.ForeignKey(Userinfo)
 #     belong_art = models.ForeignKey(Article)
 
-#     def __init__(self):
+#     def __int__(self):
 #         return self.id
 # # 点赞
 
@@ -60,7 +60,7 @@ class Article(models.Model):
 #     belong_art = models.ForeignKey(Article)
 #     belong_user = models.ForeignKey(Userinfo)
 
-#     def __init__(self):
+#     def __int__(self):
 #         return self.id
 # # 打赏
 
@@ -70,5 +70,5 @@ class Article(models.Model):
 #     price = models.CharField()
 #     status = models.BooleanField()
 
-#     def __init__(self):
+#     def __int__(self):
 #         return self.id

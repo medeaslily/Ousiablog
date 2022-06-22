@@ -17,7 +17,7 @@
         </el-form-item>
         <el-form-item>
           <el-button @click="blogLogin()" type="primary" plain>登录</el-button>
-          <el-button type="success" plain>注册</el-button>
+          <el-button @click="toRegister()" type="success" plain>注册</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -37,6 +37,9 @@ export default {
     };
   },
   methods: {
+    toRegister() {
+      this.$router.push({ path: "/register" });
+    },
     blogLogin() {
       if (
         this.formData.username.length == 0 ||
@@ -51,7 +54,6 @@ export default {
         // Qs.stringify用来应对MultiValueDictKeyError问题
         data: Qs.stringify(this.formData),
       }).then((res) => {
-        console.log(res.data);
         if (res.data == "none") {
           alert("用户名不存在");
           return;
@@ -60,6 +62,8 @@ export default {
           alert("密码错误");
           return;
         }
+        console.log(res.data);
+        this.$store.commit("saveUserinfo", res.data);
       });
     },
   },
