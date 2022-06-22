@@ -2,12 +2,14 @@
   <div id="register-page">
     <div class="dweb loginbox">
       <div class="header">
+        <!-- 标题 -->
         新用户注册
         <!-- 分割线 -->
         <el-divider></el-divider>
       </div>
-      <!-- :model绑定的是script的formData -->
-      <!-- label指定的是标签自身 -->
+      <!-- 表单 -->
+      <!-- *:model绑定的是script的formData -->
+      <!-- *label指定的是标签自身 -->
       <el-form :label-position="'right'" label-width="70px" :model="formData">
         <el-form-item label="用户名">
           <el-input v-model="formData.username"></el-input>
@@ -19,6 +21,7 @@
           <el-input v-model="formData.password2"></el-input>
         </el-form-item>
         <el-form-item>
+          <!-- 按钮 -->
           <el-button @click="blogRegister()" type="primary" plain>注册</el-button>
           <el-button @click="toLogin()" type="success" plain>已有账号</el-button>
         </el-form-item>
@@ -42,6 +45,7 @@ export default {
   },
   methods: {
     blogRegister() {
+      // 验证注册账号
       if (
         this.formData.username.length == 0 ||
         this.formData.password.length == 0 ||
@@ -58,18 +62,20 @@ export default {
         alert("密码不一致");
         return;
       }
-      //提交注册
+      //向后端执行axios请求发送注册数据
       axios({
         url: "http://127.0.0.1:9000/api/ousia-register/",
         method: "post",
-        // Qs.stringify用来应对MultiValueDictKeyError问题
+        // *Qs.stringify用来应对MultiValueDictKeyError问题
         data: Qs.stringify(this.formData),
       }).then((res) => {
         console.log(res.data);
+        //依据返回判断登录是否成功
         if (res.data == "repeat") {
           alert("账号已被注册");
           return;
         }
+        //注册成功则提交载荷保存后端返回的token到vuex
         this.$store.commit("saveUserinfo", res.data);
       });
     },
@@ -87,7 +93,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-/* 登录框上下左右留白 */
+/* *登录框上下左右留白 */
 .loginbox {
   padding: 10px 10px;
 }

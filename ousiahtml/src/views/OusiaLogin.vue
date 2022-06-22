@@ -6,8 +6,8 @@
         <!-- 分割线 -->
         <el-divider></el-divider>
       </div>
-      <!-- :model绑定的是script的formData -->
-      <!-- label指定的是标签自身 -->
+      <!-- *:model绑定的是script的formData -->
+      <!-- *label指定的是标签自身 -->
       <el-form :label-position="'right'" label-width="60px" :model="formData">
         <el-form-item label="用户名">
           <el-input v-model="formData.username"></el-input>
@@ -41,6 +41,7 @@ export default {
       this.$router.push({ path: "/register" });
     },
     blogLogin() {
+      //验证登录账号
       if (
         this.formData.username.length == 0 ||
         this.formData.password.length == 0
@@ -48,12 +49,14 @@ export default {
         alert("表单填写完整");
         return;
       }
+      //向后端执行axios请求发送登录数据
       axios({
         url: "http://127.0.0.1:9000/api/ousia-login/",
         method: "post",
-        // Qs.stringify用来应对MultiValueDictKeyError问题
+        // *Qs.stringify用来应对MultiValueDictKeyError问题
         data: Qs.stringify(this.formData),
       }).then((res) => {
+        //依据返回判断登录是否成功
         if (res.data == "none") {
           alert("用户名不存在");
           return;
@@ -63,6 +66,7 @@ export default {
           return;
         }
         console.log(res.data);
+        //登录成功则提交载荷保存后端返回的token到vuex
         this.$store.commit("saveUserinfo", res.data);
       });
     },
