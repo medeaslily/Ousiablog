@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import Qs from "qs";
 export default {
   data() {
     return {
@@ -49,26 +47,8 @@ export default {
         alert("表单填写完整");
         return;
       }
-      //向后端执行axios请求发送登录数据
-      axios({
-        url: "http://127.0.0.1:9000/api/ousia-login/",
-        method: "post",
-        // *Qs.stringify用来应对MultiValueDictKeyError问题
-        data: Qs.stringify(this.formData),
-      }).then((res) => {
-        //依据返回判断登录是否成功
-        if (res.data == "none") {
-          alert("用户名不存在");
-          return;
-        }
-        if (res.data == "pwderr") {
-          alert("密码错误");
-          return;
-        }
-        console.log(res.data);
-        //登录成功则提交载荷保存后端返回的token到vuex
-        this.$store.commit("saveUserinfo", res.data);
-      });
+      //组件通过dispatch来执行action
+      this.$store.dispatch("blogLogin", this.formData);
     },
   },
 };

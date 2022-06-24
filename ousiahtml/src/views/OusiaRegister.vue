@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import Qs from "qs";
 export default {
   data() {
     return {
@@ -62,22 +60,8 @@ export default {
         alert("密码不一致");
         return;
       }
-      //向后端执行axios请求发送注册数据
-      axios({
-        url: "http://127.0.0.1:9000/api/ousia-register/",
-        method: "post",
-        // *Qs.stringify用来应对MultiValueDictKeyError问题
-        data: Qs.stringify(this.formData),
-      }).then((res) => {
-        console.log(res.data);
-        //依据返回判断登录是否成功
-        if (res.data == "repeat") {
-          alert("账号已被注册");
-          return;
-        }
-        //注册成功则提交载荷保存后端返回的token到vuex
-        this.$store.commit("saveUserinfo", res.data);
-      });
+      //组件通过dispatch来执行action
+      this.$store.dispatch("blogRegister", this.formData);
     },
     toLogin() {
       this.$router.push({ path: "/login" });

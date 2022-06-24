@@ -1,3 +1,4 @@
+import store from "@/store";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
@@ -9,11 +10,25 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    beforeEnter: (to, from, next) => {
+      if (store.state.userinfo.token) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/add-article",
     name: "AddArticle",
     component: () => import("../views/AddArticle.vue"),
+    beforeEnter: (to, from, next) => {
+      if (store.state.userinfo.token) {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/login",

@@ -36,7 +36,8 @@
             <i class="el-icon-s-operation"></i>
             <span slot="title">栏目管理</span>
           </el-menu-item>
-          <el-menu-item index="5">
+          <!-- 像使用data一样直接使用computed的函数 -->
+          <el-menu-item v-if="authUserLogin" @click="blogLogout()" index="5">
             <i class="el-icon-back"></i>
             <span slot="title">退出登录</span>
           </el-menu-item>
@@ -63,6 +64,13 @@ export default {
       mobile_left: "",
       mobile_content: "",
     };
+  },
+  computed: {
+    //验证用户登录
+    authUserLogin() {
+      //使用全局变量直接调用getters的函数
+      return this.$store.getters.isnotUserlogin;
+    },
   },
   mounted() {
     // 动态实时获取屏幕宽度
@@ -101,6 +109,10 @@ export default {
           this.mobile_content = "xs";
         }
       }
+    },
+    //退出登录
+    blogLogout() {
+      this.$store.dispatch("blogLogout");
     },
   },
 };
