@@ -1,5 +1,7 @@
 import imp
 from lib2to3.pgen2 import token
+import re
+from urllib import response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import check_password, make_password
@@ -15,6 +17,28 @@ import datetime
 import requests
 
 hostUrl = 'http://127.0.0.1:9000/'
+
+# 自动登录
+
+
+@api_view(['POST'])
+def ousia_autologin(request):
+    token = request.POST['token']
+    # 从数据库获取同值token
+    user_token = Token.objects.filter(key=token)
+    # token判空操作，若token为空向前端返回为空信息，否则直接返回用户数据
+    if user_token:
+        userinfo = Userinfo.objects.get(belong=user_token.user)
+        userinfo_data = {
+            'token': token,
+            'nickname': userinfo.nickName,
+            'headImg': userinfo.headImg
+        }
+        return Response(userinfo_data)
+    else:
+        return Response('tokenTimeout')
+
+# 登录
 
 
 @api_view(['POST'])
@@ -46,6 +70,8 @@ def ousia_login(request):
     }
     return Response(userinfo_data)
 
+# 注册
+
 
 @api_view(['POST'])
 def ousia_register(request):
@@ -74,6 +100,17 @@ def ousia_register(request):
         'headImg': userinfo.headImg
     }
     return Response(userinfo_data)
+
+# 登出
+
+
+@api_view(['POST'])
+def ousia_logout(request):
+    token = request.POST['token']
+    user_token = Token.objects.get(key=token)
+    # 在后端登出功能里添加删除数据库里的token操作
+    user_token.delete()
+    return Response('logout')
 
 
 @api_view(['POST'])

@@ -65,13 +65,29 @@ export default {
       mobile_content: "",
     };
   },
+  //计算属性的 getter 函数是没有副作用 (side effect) 的，这使它更易于测试和理解
   computed: {
-    //验证用户登录
+    //返回用户状态
     authUserLogin() {
-      //使用全局变量直接调用getters的函数
+      //使用全局变量直接调用getters的函数来获取state（token）
       return this.$store.getters.isnotUserlogin;
     },
   },
+  //监听函数
+  watch: {
+    //当authUserLogin的返回值发生变化（token被删除为null）就跳转到登陆页面
+    authUserLogin(curVal) {
+      if (curVal == null) {
+        this.$router.push({ path: "/login" });
+      }
+    },
+  },
+  //created是在mouted之前的生命周期的环节
+  created() {
+    //在较早的一个生命周期created里调用自动登录函数
+    this.$store.dispatch("tryAutoLogin");
+  },
+  //mouted是打开第一个页面执行的最后一个函数的生命周期环节
   mounted() {
     // 动态实时获取屏幕宽度
     // window.onresize=()=>{
@@ -83,7 +99,7 @@ export default {
   methods: {
     // 发布文章
     chooseMenu(index) {
-      console.log(index);
+      //console.log(index);
       this.$router.push({ path: index });
     },
     // 为不同的屏幕宽度配置不同的样式
@@ -112,7 +128,7 @@ export default {
     },
     //退出登录
     blogLogout() {
-      this.$store.dispatch("blogLogout");
+      this.$store.dispatch("blogLogout", this.$store.getters.isnotUserlogin);
     },
   },
 };
