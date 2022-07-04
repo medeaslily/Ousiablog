@@ -28,7 +28,7 @@ def ousia_autologin(request):
     user_token = Token.objects.filter(key=token)
     # token判空操作，若token为空向前端返回为空信息，否则直接返回用户数据
     if user_token:
-        userinfo = Userinfo.objects.get(belong=user_token.user)
+        userinfo = Userinfo.objects.get(belong=user_token[0].user)
         userinfo_data = {
             'token': token,
             'nickname': userinfo.nickName,
