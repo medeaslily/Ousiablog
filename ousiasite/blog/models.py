@@ -30,6 +30,9 @@ class Article(models.Model):
     cover = models.CharField(null=True, blank=True, max_length=300)
     describe = models.CharField(null=True, blank=True, max_length=200)
     content = models.TextField()
+    # 前端需要的文章数据是关联用户的，因此需要修改文章数据表，添加用户字段
+    belong = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name='artitle_user')
     #belong = models.ForeignKey(Userinfo)
 
     def __int__(self):

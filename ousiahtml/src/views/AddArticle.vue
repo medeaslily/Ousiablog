@@ -75,6 +75,7 @@ export default {
         describe: this.article_info.describe,
         content: this.article_info.contents,
         cover: this.cover_img,
+        token: this.$store.getters.isnotUserlogin,
       };
       axios
         .post(
@@ -83,6 +84,17 @@ export default {
         )
         .then((res) => {
           console.log(res);
+          if (res.data == "notitle") {
+            alert("标题为空");
+            return;
+          }
+          if (res.data == "nologin") {
+            alert("用户信息错误");
+            return;
+          }
+          if (res.data == "ok") {
+            window.location.reload();
+          }
         })
         .catch((err) => {
           console.log(err);
