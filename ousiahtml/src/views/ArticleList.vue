@@ -13,7 +13,7 @@
       <el-row>
         <!-- span：栅格占据的列数，最大值24 -->
         <el-col :span="24">
-          <div v-for="item in article_list" :key="item.id" class="card dweb">
+          <div class="card dweb">
             <el-row>
               <!-- lg：≥1200px 响应式栅格数或者栅格属性对象 （电脑）-->
               <!-- xs：<768px 响应式栅格数或者栅格属性对象 （手机）-->
@@ -21,13 +21,13 @@
                 <el-image
                   v-if="screenWidth>500"
                   style="width: 150px; height: 100px"
-                  :src="item.cover"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
                   :fit="'cover'"
                 ></el-image>
                 <el-image
                   v-else
                   style="width: 100%; height: 200px"
-                  :src="item.cover"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
                   :fit="'cover'"
                 ></el-image>
               </el-col>
@@ -45,6 +45,135 @@
                   icon="el-icon-delete"
                   circle
                 ></el-button>
+                <span>【小樽潮風高校Project】小春六花*小樽コラボ</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <span>发布者:admin</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <el-button type="success" icon="el-icon-search" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="24">
+          <div class="card dweb">
+            <el-row>
+              <el-col :xs="24" :lg="6">
+                <!-- screenWidth：由父组件App.vue在router-view标签向子组件传递的屏幕宽度 -->
+                <el-image
+                  v-if="screenWidth>500"
+                  style="width: 150px; height: 100px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+                <el-image
+                  v-else
+                  style="width: 100%; height: 200px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+              </el-col>
+              <el-col class="text-item" :xs="24" :lg="4">
+                <span>【小樽潮風高校Project】小春六花*小樽コラボ</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <span>发布者:admin</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <el-button type="success" icon="el-icon-search" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="24">
+          <div class="card dweb">
+            <el-row>
+              <el-col :xs="24" :lg="6">
+                <el-image
+                  v-if="screenWidth>500"
+                  style="width: 150px; height: 100px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+                <el-image
+                  v-else
+                  style="width: 100%; height: 200px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+              </el-col>
+              <el-col class="text-item" :xs="24" :lg="4">
+                <span>【小樽潮風高校Project】小春六花*小樽コラボ</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <span>发布者:admin</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <el-button type="success" icon="el-icon-search" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="24">
+          <div class="card dweb">
+            <el-row>
+              <el-col :xs="24" :lg="6">
+                <el-image
+                  v-if="screenWidth>500"
+                  style="width: 150px; height: 100px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+                <el-image
+                  v-else
+                  style="width: 100%; height: 200px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+              </el-col>
+              <el-col class="text-item" :xs="24" :lg="4">
+                <span>【小樽潮風高校Project】小春六花*小樽コラボ</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <span>发布者:admin</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <el-button type="success" icon="el-icon-search" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="24">
+          <div class="card dweb">
+            <el-row>
+              <el-col :xs="24" :lg="6">
+                <el-image
+                  v-if="screenWidth>500"
+                  style="width: 150px; height: 100px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+                <el-image
+                  v-else
+                  style="width: 100%; height: 200px"
+                  :src="'https://otaru.jp/_sys/wp-content/uploads/2021/10/9185e1367f464541162b3bd3b54d8aa1-1-scaled.jpg'"
+                  :fit="'cover'"
+                ></el-image>
+              </el-col>
+              <el-col class="text-item" :xs="24" :lg="4">
+                <span>【小樽潮風高校Project】小春六花*小樽コラボ</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <span>发布者:admin</span>
+              </el-col>
+              <el-col class="text-item" :xs="12" :lg="7">
+                <el-button type="success" icon="el-icon-search" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>>>>>>>> 2b8d9a6ec16803956f5e8ab55746dd2d5bbd105d
               </el-col>
             </el-row>
           </div>
@@ -61,7 +190,6 @@
         layout="prev, pager, next"
         :total="total"
         :page-size="pageSize"
-        :current-page="currentPage"
         @current-change="currentChange"
       ></el-pagination>
     </div>
@@ -69,65 +197,17 @@
 </template>
 
 <script>
-import axios from "axios";
-import QS from "qs";
 export default {
   props: ["screenWidth"],
   data() {
     return {
-      //currentPage:当前页数
-      currentPage: 1,
       total: 100,
       pageSize: 5,
-      article_list: [],
     };
   },
-  mounted() {
-    this.getListData(this.currentPage);
-  },
   methods: {
-    // 删除文章
-    deleteArticle(id) {
-      if (confirm("是否删除？")) {
-        axios({
-          url: "http://127.0.0.1:9000/api/delete-article/",
-          method: "delete",
-          data: QS.stringify({
-            id,
-            token: this.$store.getters.isnotUserlogin,
-          }),
-          // 针对后端Media Type问题的首部信息
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }).then((res) => {
-          console.log(res.data);
-          if (res.data == "nologin") {
-            alert("用户信息过期");
-            return;
-          }
-          this.getListData(this.currentPage);
-        });
-      }
-    },
-    getListData(page) {
-      axios({
-        url: "http://127.0.0.1:9000/api/artitle-list",
-        method: "get",
-        params: {
-          page,
-          pageSize: this.pageSize,
-        },
-      }).then((res) => {
-        console.log(res.data);
-        this.article_list = res.data.data;
-        this.total = res.data.total;
-      });
-    },
-    //分页器监听函数
     currentChange(cur) {
-      this.currentPage = cur;
-      this.getListData(cur);
+      console.log("第" + cur + "页");
     },
   },
 };
