@@ -222,7 +222,7 @@ def artitleList(request):
         articles = paginator.page(paginator.num_pages)
     except PageNotAnInteger:
         articles = paginator.page(1)
-    # print(articles)
+    print(articles)
 
     # 把page页的数据打包整理，发送给前端
     articles_data = []
